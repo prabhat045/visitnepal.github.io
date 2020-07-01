@@ -1,0 +1,555 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
+<style>
+    body{
+        background:rgb(248, 248, 248);
+    }
+    .carousel-inner{
+        height:280px;
+        
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    .card-title:hover{
+        color:rgba(107, 216, 252);
+        cursor: pointer;
+        
+       
+
+    }
+
+    .card{
+        
+        
+        clip-path: polygon( 
+    calc(0% + 5px) calc(0% + 5px), /* top left */
+    calc(100% - 5px) calc(0% + 5px), /* top right */
+    calc(100% - 5px) calc(100% - 5px), /* bottom right */
+    calc(0% + 5px) calc(100% - 5px) /* bottom left */
+  );
+  transition: clip-path 0.3s linear;
+    }
+    .card:hover{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+        
+      
+    
+    .card:hover .prev{
+        display:block;
+    }
+    .card:hover .next{
+        display:block;
+        
+    }
+    .custom{
+        height: 100%;
+        width : 100%
+    }
+    .prev{
+        display : none;
+        top:38%;
+        
+        height:40px;
+        padding:10px;
+        border-radius: 0px 50px 50px 0px;
+    }
+    .next{
+        display : none;
+        top:38%;
+        
+        height:40px;
+        padding:10px;
+        border-radius: 50px 0px 0px 50px;
+    }
+    .next:hover{
+        background:white ;
+        color:black;
+                
+        -webkit-transition: background-color 300ms linear;
+        -moz-transition: background-color 300ms linear;
+        -o-transition: background-color 300ms linear;
+        -ms-transition: background-color 300ms linear;
+        transition: background-color 300ms linear;
+    }
+    .prev:hover{
+        background:white;
+        color:black;
+                
+        -webkit-transition: background-color 300ms linear;
+        -moz-transition: background-color 300ms linear;
+        -o-transition: background-color 300ms linear;
+        -ms-transition: background-color 300ms linear;
+        transition: background-color 300ms linear;
+
+    }
+    .card-text{
+        color:#929191;
+        font-weight: 300;
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+    .card-title{
+        color:#555454;
+        font-weight:400;
+        font-family: 'Roboto Slab', serif;
+
+    }
+    .user{
+        font-weight: 100;
+        font-size:14px;
+    }
+    .carousel-indicators li{
+        width: 9px;
+  height: 9px;
+  border-radius: 100%;
+    }
+    .carousel-indicators .active{
+        width: 12px;
+  height: 11px;
+  border-radius: 100%;
+
+    }
+.card-image{
+    position: relative;
+
+}
+    .img-overlay{
+        position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition:  0.5s ease;
+    }
+
+    .card-image:hover .img-overlay {
+  display: block;
+  background: rgba(107, 216, 252, 0.7);
+}
+
+.read{
+  position: absolute;
+  height:50px;
+  border-radius: 50%;
+  background:#f0f0f0;
+  width: 50px;
+  left:150;
+  top: 70px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  border:none;
+  font-size:25px;
+  cursor: pointer;
+  transition:  0.5s ease;
+  
+
+}
+
+.read2{
+  position: absolute;
+  height:50px;
+  border-radius: 50%;
+  background:#f0f0f0;
+  width: 50px;
+  left:150;
+  top: 130px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  border:none;
+  font-size:25px;
+  cursor: pointer;
+  transition:  0.5s ease;
+}
+
+
+.card-image:hover .read2{
+    opacity:1;
+
+}
+.card-image:hover .read{
+    opacity:1;
+
+}
+
+.info{
+    color:rgb(139, 139, 139);
+    font-weight: 100;
+    font-size: 15px;
+
+}
+.navbar{
+  background: rgba(122, 122, 122, 0.7);
+}
+</style>
+
+<div class="container-fluid">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+     
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html" target="_blank">How it works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login/logo.html" target="_blank">Login</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/SignUp.html" target="_blank">Sign up</a>
+          </li>
+          
+        </ul>
+
+    
+        
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+    <div class="row">
+        <img src="resources/img/Mount%20everest1.jpg" style="width:100%; height:70vh;">
+    </div>
+    <div class="row" style="padding:50px;">
+        <div class="col-lg-3">
+<div class="card" >
+ <!--Carousel Wrapper-->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-2" data-slide-to="1"></li>
+      <li data-target="#carousel-example-2" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <div class="view">
+          <img class="custom" src="resources/img/patan.jpg"
+            alt="First slide">
+          <div class="mask rgba-black-light"></div>
+        </div>
+       
+      </div>
+      <div class="carousel-item">
+        <!--Mask color-->
+        <div class="view">
+          <img class="custom" src="resources/img/basantapur1.jpg"
+            alt="Second slide">
+          <div class="mask rgba-black-strong"></div>
+        </div>
+        
+      </div>
+      <div class="carousel-item">
+        <!--Mask color-->
+        <div class="view">
+          <img class="custom" src="resources/img/bhakatapur.jpg"
+            alt="Third slide">
+          <div class="mask rgba-black-slight"></div>
+        </div>
+       
+      </div>
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <svg class="bi bi-chevron-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+          </svg>
+    </a>
+    <a class="carousel-control-next next" href="#carousel-example-2" role="button" data-slide="next" >
+        <svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+    </a>
+    <!--/.Controls-->
+  </div>
+  <!--/.Carousel Wrapper-->
+    
+    <div class="card-body">
+        <a href="#">
+      <h5 class="card-title">Durbar square</h5>
+    </a>
+      <p class="card-text">
+          <span class="user"> by: Prabhat uprety</span> <br> <br>
+          Durbar Square refers to the places near Nepal’s royal palaces of the past. Temples, idols, statues, open courts and fountains along with other structures form part of Durbar Square. In the past Durbar Squares had been witness to events of importance including coronation of kings of the land. Now united as one country, Nepal was once a land that consisted many small kingdoms. Durbar Squares are fine examples of the life and style of the ancient kingdom. The famous three Durbar Squares in Nepal are Kathmandu Durbar Square, Patan Durbar Square and Bhaktapur Durbar Square. UNESCO has declared these squares as World Heritage Sites.
+
+</p>
+      <a href="#" class="custom-btn">
+        <svg class="bi bi-chat-square-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+          </svg>
+      </a>
+    </div>
+
+
+  </div>
+</div>
+
+
+  <div class="col-lg-3">
+    <div class="card" >
+        <div class="card-image">
+      <img src="resources/img/namobuddha.jpg" class="card-img-top" alt="...">
+      <div class="img-overlay"></div>
+      
+      
+      <a href="#">
+        <button title="Open the article" class="read"> 
+      <svg class="bi bi-file-earmark" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+        <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+      </svg>
+    </button>
+    </a>
+    </div>
+      <div class="card-body">
+        <h5 class="card-title">Namobuddha</h5>
+        
+        <p class="card-text">
+            <span class="user"> by: Prabhat Uprety</span> <br> <br>
+            According to the old legend, 6000 years ago, prince (Mahasatwo/Ngingdui Tshenpo), at the top of the hill, looking the jungle, discovers a tigress lying near the rock. Very quickly, he realizes that the tigress was about to die due to hunger with her five little babies still sucking milk from her, survivals of the babies depend on their mother. Mahasatwo, decides to give his life to the tigress in a bust of love and compassion. So Prince Mahasatwo cuts his body to present his warm blood in the mouth of the mother tiger, and the taste of blood gives the appetite to the starving family. As the tigress accepts the sacrifice from prince she leaves only the bones. The bones of prince were brought back in the village and buried in the tomb which is actual stupa of Namo Buddha.</p>
+      
+        
+      </div>
+    </div>
+    </div>
+ 
+
+
+
+    <div class="col-lg-3">
+        <div class="card" >
+            <div class="card-image">
+          <img src="resources/img/chandragiri.jpg" class="card-img-top" alt="...">
+          <div class="img-overlay"></div>
+          
+          
+          <a href="#">
+            <button title="Open the article" class="read"> 
+          <svg class="bi bi-file-earmark" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+            <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+          </svg>
+        </button>
+        </a>
+        </div>
+          <div class="card-body">
+            <h5 class="card-title">Chandragiri hills</h5>
+            
+            <p class="card-text">
+                <span class="user"> by: Prabhat Uprety </span> <br> <br>
+                Chandragiri is a hill station inside Kathmandu valley that lies 7 kms away from Thankot and at an elevation of  2551 m. The hill provides panoramic views of Kathmandu Valley and the Himalayan ranges from Annapurna to Everest.
+The Chandragiri Hill was an ancient trading route that went through kulekhani, chitlang, chandragiri pass and Thankot. The Bhaleshwor Mahadev temple at the top of the hill is where King Prithvi Narayan Shah worshipped the god before conquering the valley.
+Today Chandragiri hills is one of the most visited sites in the country. The access to the site has been made a lot easier by establishment of the 2.4km Cable Car to the top or by a 1-2 hour hike. Besides the Panoramic view of the himalayas, activities to entertain and amuse guests of all age groups, the location now stands as the ultimate fun destination.
+                
+                
+ </p>
+            
+            
+          </div>
+        </div>
+        </div>
+
+
+
+
+        <div class="col-lg-3">
+            <div class="card" >
+                <div class="card-image">
+              <img src="resources/img/raralake-big.jpg" class="card-img-top" style="height:300px;" alt="...">
+              <div class="img-overlay"></div>
+              
+              
+              <a href="#">
+                <button title="Open the article" class="read2"> 
+              <svg class="bi bi-file-earmark" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+              </svg>
+            </button>
+            </a>
+            </div>
+              <div class="card-body">
+                <h5 class="card-title">Rara Lake</h5>
+                
+                <p class="card-text">
+                    <span class="user"> by: Prabhat Uprety </span> <br> <br>
+                    Rara Lake at 2,990m, is the deepest lake in Nepal and also one of the most pristine. Surrounded by green hills on all sides, covered in juniper trees, one can camp by the sparkling waters of the lake. Go boating in the clear waters, hike to nearby hills for a closer view of the mountains and lake, get acquainted with the charming local people, or just walk around the large lake watching out for wild flowers or a rare bird along the way.
+
+The park is surrounded by alpine coniferous vegetation and offers a representative sample of the region's flora and fauna. More than 500 different kinds of flowers, 20 species of mammals and 214 species of birds can be observed in the Rara National Park. </p>
+                
+                
+              </div>
+            </div>
+            </div>   
+
+
+            <div class="col-lg-3">
+                <div class="card" >
+                    <div class="card-image">
+                  <img src="resources/img/shey%20phoksundo.jpeg" class="card-img-top" alt="...">
+                  <div class="img-overlay"></div>
+                  
+                  
+                  <a href="#">
+                    <button title="Open the article" class="read"> 
+                  <svg class="bi bi-file-earmark" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                    <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+                  </svg>
+                </button>
+                </a>
+                </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Shey-Phoksundo Lake</h5>
+                    
+                    <p class="card-text">
+                        <span class="user"> by: Prabhat Uprety </span> <br> <br>
+                        Shey Phoksundo National Park is one of the best places on the earth from where you would not want to leave. The place is one of the scenic mountain parks of the world standing in the leagues of Yellowstone and Yosemite National Parks.
+
+Not only the biggest but also the only trans Himalayan National Park in Nepal, Shey Phoksundo National Park is known for its spectacular landscapes and breathtaking mountain scenes. From the gigantic Himalayas, turquoise lakes, and isolated hamlets, this park offers everything to its visitors that they would not have even expected in their wildest dreams. Here is all the information you need if you ever plan a visit to Shey Phoksundo National Park.</p>
+                 
+                    
+                  </div>
+                </div>
+                </div>   
+                <div class="col-lg-3">
+                    <div class="card" >
+                        <div class="card-image">
+                      <img src="resources/img/pashupatinath.jpeg" class="card-img-top" alt="...">
+                      <div class="img-overlay"></div>
+                      
+                      
+                      <a href="#">
+                        <button title="Open the article" class="read"> 
+                      <svg class="bi bi-file-earmark" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                        <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+                      </svg>
+                    </button>
+                    </a>
+                    </div>
+                      <div class="card-body">
+                        <h5 class="card-title">Pashupatinath</h5>
+                        
+                        <p class="card-text">
+                            <span class="user"> by: Prabhat Uprety </span> <br> <br>
+                            Dedicated to Lord Shiva, Pashupatinath is one of the four most important religious sites in Asia for devotees of Shiva. Built in the 5th century and  later renovated by Malla kings, the site itself is said to have existed from the beginning of the millennium when a Shiva lingam was discovered here.The largest temple complex in Nepal, it stretches on both sides of the Bagmati River which is considered holy by Hindus.The main pagoda style temple has a gilded roof, four sides covered in silver, and exquisite wood carvings.Temples dedicated to several other Hindu and Buddhist deities surround the the temple of Pashupatinath.Cremation of Hindus take place on raised platforms along the river. </p>
+                        
+                        
+                      </div>
+                    </div>
+                    </div>   
+
+
+
+                    <div class="col-lg-3">
+                        <div class="card" >
+                         <!--Carousel Wrapper-->
+                        <div id="carousel-example-3" class="carousel slide carousel-fade" data-ride="carousel">
+                            <!--Indicators-->
+                            <ol class="carousel-indicators">
+                              <li data-target="#carousel-example-3" data-slide-to="0" class="active"></li>
+                              <li data-target="#carousel-example-3" data-slide-to="1"></li>
+                              <li data-target="#carousel-example-3" data-slide-to="2"></li>
+                            </ol>
+                            <!--/.Indicators-->
+                            <!--Slides-->
+                            <div class="carousel-inner" role="listbox">
+                              <div class="carousel-item active">
+                                <div class="view">
+                                  <img class="custom" src="resources/img/begnas.jpg"
+                                    alt="First slide">
+                                  <div class="mask rgba-black-light"></div>
+                                </div>
+                               
+                              </div>
+                              <div class="carousel-item">
+                                <!--Mask color-->
+                                <div class="view">
+                                  <img class="custom" src="resources/img/talbarahi.jpg"
+                                    alt="Second slide">
+                                  <div class="mask rgba-black-strong"></div>
+                                </div>
+                                
+                              </div>
+                              <div class="carousel-item">
+                                <!--Mask color-->
+                                <div class="view">
+                                  <img class="custom" src="resources/img/rupalake.jpg"
+                                    alt="Third slide">
+                                  <div class="mask rgba-black-slight"></div>
+                                </div>
+                               
+                              </div>
+                            </div>
+                            <!--/.Slides-->
+                            <!--Controls-->
+                            <a class="carousel-control-prev prev" href="#carousel-example-3" role="button" data-slide="prev">
+                                <svg class="bi bi-chevron-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                  </svg>
+                            </a>
+                            <a class="carousel-control-next next" href="#carousel-example-3" role="button" data-slide="next" >
+                                <svg class="bi bi-chevron-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                  </svg>
+                            </a>
+                            <!--/.Controls-->
+                          </div>
+                          <!--/.Carousel Wrapper-->
+                            
+                            <div class="card-body">
+                                <a href="#">
+                              <h5 class="card-title">Pokhara</h5>
+                            </a>
+                              <p class="card-text">
+                                  <span class="user"> by:Prabhat Uprety </span> <br> <br>
+                                  Pokhara is Nepal's number 1 adventure and leisure destination,a gateway to treks in the Annapurna region with plenty of entertainment for individual travellers and their families.In Pokhara you can experience the excitement of adventure: boating,hiking,pony rides,paragliding, bungee,zipline or simply relaxing at one of the several lakes in the valley.Pokhara will overwhelm you with its natural beauty and great photo ops.Walk along the shores of the Fewa Lake,enjoy the greenery surrounding you and gaze at the spectacular panoramic view of the Himalayan peaks of the Annapurna Massif.</p>
+                              
+                            </div>
+                        
+                        
+                          </div>
+                        </div>
+            
+                
+                
+                    
+
+
+
+</div>
+    
+  </div>
+  
